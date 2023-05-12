@@ -55,7 +55,7 @@ def get_shape_and_Quot(X):
             #create bijection taking c1 -> c2, c2 -> c1 fixing everything outside c1 \cup c2
             #Permutation expects vals > 0, so have to shift indices by 1
             one_line_perm = list(range(1,X_size+1))
-            for i in range(len(c1)): #IDEA: modify to also have 
+            for i in range(len(c1)): 
                 one_line_perm[c1[i]-1] = c2[i]
                 one_line_perm[c2[i]-1] = c1[i]
             #print(one_line_perm)
@@ -90,19 +90,19 @@ def get_shape_and_Quot(X):
         for tup in aug_tuples:
             aug_perm_str += str(tup)
         aug_perm = Permutation(aug_perm_str)
-        print('--------------------')
-        print(perm_on_equiv_class_reps)
-        print(rep_perm)
-        print(aug_perm)
+        #print('--------------------')
+        #print(perm_on_equiv_class_reps)
+        #print(rep_perm)
+        #print(aug_perm)
 
         #note: I don't entirely understand when we have to do this perm -> perm group el conversion
         #if we don't do it here, the code seems to work unless X has >=10 vertices, then it breaks.
         if rep_perm.to_permutation_group_element() in aut:
             quot_els.append(aug_perm)
 
-            print('!?!')
-            print(rep_perm)
-            print(aug_perm)
+            #print('!?!')
+            #print(rep_perm)
+            #print(aug_perm)
             
 
     #quot_group acts on the elements of the equivalences classes indexed by the given order
