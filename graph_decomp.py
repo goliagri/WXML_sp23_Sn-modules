@@ -121,8 +121,6 @@ def get_shape_and_Quot(X):
 
     return shape, equiv_classes, quot_group
 
-
-
 #module given a lambda for some M^lambda, computes all dominating partitions, kostka numbers, and semistandard tableuax per dominating partition
 def perm_module_decom(lam):
     all_partitions = Partitions(sum(lam)) #all partitions of whatever integer lambda partitions
@@ -133,6 +131,51 @@ def perm_module_decom(lam):
     kostka_nums = [symmetrica.kostka_number(shape, lam) for shape in shapes]
     semistandard_tabs = [symmetrica.kostka_tab(shape, lam) for shape in shapes]
     return shapes, kostka_nums, semistandard_tabs
+
+#Given a semi-standard tableaux (Kostka_tab), we produce its orbit under G
+def get_orbit_tableauxs(tab, G):
+    res = set()
+    for perm in G.list():
+        res.add(tab.symmetric_group_action_on_entries(Permutation(perm)))
+    #print('-----------------------')
+    #print(len(G.list()))
+    #print(len(res))
+    #print(res)
+    #print('-----------------------')
+    return res
+
+#Given a not-necesarily semistandard tableaux Tab, decompose it as sum of semistandard tableaux
+#See brosh Thesis pgs 179-184
+#Briefly: we find all semistandard tableaux we can get from first permuting rows, then columns.
+def decompose_tableau_into_sum_of_semistandard(Tab):
+    max_content = max(Tab.entries())
+    Viable_partials = [Tab]
+    decomp = {}
+    while viable_partials != []:
+        new_viable_partials = []
+        for i in range(1, max_content):
+            new_viable_partials = gen_viable_partials(viable_partials, i)
+
+            viable_partials = new_viable_partials
+            new_viable_partials = []
+    return 
+
+def gen_viable_partials(viable_partials, i):
+    new_viable_partials = []
+    for partial_hom in viable_partials: 
+        
+    
+    return None
+
+def col_sorted_and_restricted_to_i_is_semistandard(tab, i):
+
+    return False
+
+#X is the graph defining a graph module M^X
+def decompose_graph_module(X):
+    #eventually this method will run the full pipeline
+    return None
+    
 
 if __name__ == '__main__':
     import sage_testing

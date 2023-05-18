@@ -1,7 +1,7 @@
 from sage.all import *
 import numpy as np
 
-from graph_decomp import get_shape_and_Quot, perm_module_decom
+from graph_decomp import *
 '''
 Indexing Note: We need to keep the indexes of graphs, permutations, and python lists consistent. We fix graph vertice and permutation indices as starting at 1 and python lists as starting at 0. Keep this in mind when converting between them (using permutation elements to index a list for example)
 ''' 
@@ -24,13 +24,21 @@ def main():
 
     #given a graph write it in terms of a quotient of a symmetric group
 
-
-
-
-
     shape, equiv_classes, quot_group = get_shape_and_Quot(X)
+
     #shape = [1,1,1]
     M_lam_decomp = perm_module_decom(shape)
+    shapes, kostka_nums, semistandard_tabs = M_lam_decomp
+
+    for i in range(len(shapes)):
+        for tab in semistandard_tabs[i]:
+            tab_G_orbit = get_orbit_tableauxs(tab, quot_group)
+            break
+        break
+        
+
+
+
     print('-----------------')
     print(X)
     print('Graph automorphism group: ' + str(X.automorphism_group()))
